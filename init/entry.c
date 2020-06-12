@@ -56,6 +56,7 @@ int kern_entry()
 */
 #include "console.h"
 #include "string.h"
+#include "debug.h"
 int kern_entry()
 {
 	console_clear();
@@ -63,15 +64,10 @@ int kern_entry()
 	char kernel[] = "o\n";
 	char size[] = "0\n";
 	size[0] += strlen(hello);
+	printk("%d\n",12);
+	printk("%s\n",hello);
+	my_printk("%s\n",hello);
 
-	console_write_color( size, rc_black, rc_green);
-
-	console_write_color( strcat(hello, kernel), rc_black, rc_green);
-	
-	size[0] = strcmp(kernel, hello) + '0';
-	
-	console_write_color(strcpy(hello,kernel), rc_black, rc_green);
-	console_write_color( size, rc_black, rc_green);
 	
 	
 

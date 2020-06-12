@@ -6,12 +6,11 @@
  *    Description:  内核的打印函数
  *
  *        Version:  1.0
- *        Created:  2013年11月06日 12时06分00秒
+ *        Created:  2020年06月12日 
  *       Revision:  none
  *       Compiler:  gcc
  *
- *         Author:  Hurley (LiuHuan), liuhuan1992@gmail.com
- *        Company:  Class 1107 of Computer Science and Technology
+ *         Author:  Pickle
  *
  * =====================================================================================
  */
@@ -20,6 +19,10 @@
 #include "string.h"
 #include "vargs.h"
 #include "debug.h"
+
+#define bool int
+#define true 1
+#define false 0
 
 static int vsprintf(char *buff, const char *format, va_list args);
 
@@ -322,4 +325,84 @@ static int vsprintf(char *buff, const char *format, va_list args)
 
 	return (str -buff);
 }
+//my personal func
+void my_printk(char *format, ...)
+{
+	int i;
+	int pos = 0;
+	static char buffer[1024];
+	
+	bool has_p;
+	va_list args;
+	va_start(args,format); //ָ取第一个参数
+	
+	for (i = 0; format[i] != '\0'; ++i)
+	{
+		switch(format[i])
+		{
+			case '%':
+			if (has_p == true)
+				buffer[pos++] = '%';
+			else
+				has_p = true;
+			break;
+			case 'c':
+			if (has_p == true)
+			{
+				has_p = false;
+				char c = va_arg(args,int);
+				buffer[pos++] = c;
+			}
+			break;
+			case 'd':
+			if (has_p == true)
+			{
+				has_p = false;
+				int num = va_arg(args,int);
+				if(num == 0)
+				{
+					buffer[pos++] =  '0';
+					break;
+				}else if(num < 0)
+				{
+					buffer[pos++] = '-';
+					num = -num;
+				}
+				//此处有溢出bug MIN_INT 取反仍是 MIN_INT
+				
+				int t_num = num,cnt = 0;
+				while(t_num)
+				{
+					cnt++;
+					t_num /= 10;
+				}
+				// printf("%d\n", cnt);
+				int ptr;
+				for(ptr = pos + cnt - 1; ptr >= pos; ptr--)
+				{
+					buffer[ptr] = num % 10 + '0';
+					num /= 10;
+				}
+				pos = pos + cnt;
+			}	
+			break;
+			case 's':
+			if (has_p == true)
+			{
+				has_p = false;
+				char *str = va_arg(args,char *);
+				int len = strlen(str);
+				strcpy(buffer + pos,str);
+				pos += len ;
+			}
+			break;
+			default:
+			buffer[pos++] = format[i];
+		}
+	}
+	
+	buffer[pos] = '\0'; 
+	va_end(args);
+	console_write(buffer);
 
+}
