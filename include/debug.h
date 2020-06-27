@@ -20,7 +20,7 @@
 
 #include "console.h"
 #include "vargs.h"
-//#include "elf.h"
+#include "elf.h"
 
 #define assert(x, info)                                       	\
 	do {                                                	\

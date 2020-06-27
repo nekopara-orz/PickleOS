@@ -24,18 +24,18 @@ inline void bzero(void *dest, uint32_t len)
 
 inline int strcmp(const char *str1, const char *str2)
 {
-	char *t_str1,*t_str2;
-	t_str1 = str1;
-	t_str2 = str2;
-	while((*t_str1) != '\0' && (*t_str2) != '\0')
+	//char *t_str1,*t_str2;
+	//t_str1 = str1;
+	//t_str2 = str2;
+	while((*str1) != '\0' && (*str2) != '\0')
 	{
-		if( (*t_str1) > (*t_str2) ) return 1;
-		else if((*t_str1) < (*t_str2)) return -1;
-		t_str1++;
-		t_str2++;
+		if( (*str1) > (*str2) ) return 1;
+		else if((*str1) < (*str2)) return -1;
+		str1++;
+		str2++;
 	}
-	if((*t_str1) != '\0') return 1;
-	else if((*t_str2) != '\0') return -1;
+	if((*str1) != '\0') return 1;
+	else if((*str2) != '\0') return -1;
 	return 0;
 }
 
@@ -53,12 +53,12 @@ inline char *strcpy(char *dest, const char *src)
 inline char *strcat(char *dest, const char *src)
 {
 	char *cp = dest;
-	char *t_src = src;
+	//char *t_src = src;
 	while (*cp) {
 	      cp++;
 	}
 
-	while ((*cp++ = *t_src++));
+	while ((*cp++ = *src++));
 
 	return dest;
 }
@@ -66,11 +66,11 @@ inline char *strcat(char *dest, const char *src)
 inline int strlen(const char *src)
 {
 	int len = 0;
-	char* t_src = src;
-	while((*t_src) != '\0')
+	//char* t_src = src;
+	while((*src) != '\0')
 	{
 		len++;
-		t_src++;
+		src++;
 	}
 	return len;
 }
