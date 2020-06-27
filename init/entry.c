@@ -67,7 +67,7 @@ int kern_entry()
 	printk("%d\n",12);
 	printk("%s\n",hello);
 	my_printk("%s\n",hello);
-
+	my_printk("%s\n",kernel);
 	
 	
 
