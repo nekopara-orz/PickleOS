@@ -2,7 +2,7 @@
 #
 # --------------------------------------------------------
 #
-#    pickle这个小内核的 Makefile
+#    hurlex 这个小内核的 Makefile
 #    默认使用的C语言编译器是 GCC、汇编语言编译器是 nasm
 #
 # --------------------------------------------------------
@@ -35,16 +35,16 @@ all: $(S_OBJECTS) $(C_OBJECTS) link update_image
 
 link:
 	@echo 链接内核文件...
-	$(LD) $(LD_FLAGS) $(S_OBJECTS) $(C_OBJECTS) -o my_kernel
+	$(LD) $(LD_FLAGS) $(S_OBJECTS) $(C_OBJECTS) -o hx_kernel
 
 .PHONY:clean
 clean:
-	$(RM) $(S_OBJECTS) $(C_OBJECTS) my_kernel
+	$(RM) $(S_OBJECTS) $(C_OBJECTS) hx_kernel
 
 .PHONY:update_image
 update_image:
 	sudo mount floppy.img /mnt/kernel
-	sudo cp my_kernel /mnt/kernel/my_kernel
+	sudo cp hx_kernel /mnt/kernel/hx_kernel
 	sleep 1
 	sudo umount /mnt/kernel
 
@@ -58,8 +58,7 @@ umount_image:
 
 .PHONY:qemu
 qemu:
-	qemu -fda floppy.img -boot a	
-	#add '-nographic' option if using server of linux distro, such as fedora-server,or "gtk initialization failed" error will occur.
+	qemu -fda floppy.img -boot a
 
 .PHONY:bochs
 bochs:

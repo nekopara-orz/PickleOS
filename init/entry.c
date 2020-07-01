@@ -60,14 +60,9 @@ int kern_entry()
 int kern_entry()
 {
 	console_clear();
-	char hello[] = "hell";
-	char kernel[] = "o\n";
-	char size[] = "0\n";
-	size[0] += strlen(hello);
-	printk("%d\n",12);
-	printk("%s\n",hello);
-	my_printk("%s\n",hello);
-	my_printk("%s\n",kernel);
+	init_debug();
+	printk_color(rc_black, rc_green, "Hello, OS kernel!\n");
+	panic("test");
 	
 	
 
