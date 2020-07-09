@@ -57,10 +57,14 @@ int kern_entry()
 #include "console.h"
 #include "string.h"
 #include "debug.h"
+#include "gdt.h"
 int kern_entry()
 {
-	console_clear();
+	
 	init_debug();
+	init_gdt();
+
+	console_clear();
 	printk_color(rc_black, rc_green, "Hello, OS kernel!\n");
 	panic("test");
 	
