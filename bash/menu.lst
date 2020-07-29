@@ -1,0 +1,6 @@
+timeout 1
+
+title	my_kernel 0.1
+	root (fd0)
+	kernel /my_kernel
+        module /initrd

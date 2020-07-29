@@ -65,7 +65,7 @@ int kern_entry()
 	init_gdt();
 
 	console_clear();
-	printk_color(rc_black, rc_green, "Hello, OS kernel!\n");
+	printk_color(rc_black, rc_green, "Hello, OS my_kernel!\n");
 	panic("test");
 	
 	

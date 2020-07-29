@@ -35,16 +35,16 @@ all: $(S_OBJECTS) $(C_OBJECTS) link update_image
 
 link:
 	@echo 链接内核文件...
-	$(LD) $(LD_FLAGS) $(S_OBJECTS) $(C_OBJECTS) -o hx_kernel
+	$(LD) $(LD_FLAGS) $(S_OBJECTS) $(C_OBJECTS) -o my_kernel
 
 .PHONY:clean
 clean:
-	$(RM) $(S_OBJECTS) $(C_OBJECTS) hx_kernel
+	$(RM) $(S_OBJECTS) $(C_OBJECTS) my_kernel
 
 .PHONY:update_image
 update_image:
 	sudo mount floppy.img /mnt/kernel
-	sudo cp hx_kernel /mnt/kernel/hx_kernel
+	sudo cp my_kernel /mnt/kernel/my_kernel
 	sleep 1
 	sudo umount /mnt/kernel
 
