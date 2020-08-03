@@ -70,8 +70,11 @@ int kern_entry()
 	printk_color(rc_black, rc_green, "Hello, OS my_kernel!\n");
 	//panic("test");
 	
-	asm volatile ("int $0x3");
-	asm volatile ("int $0x4");
+	//asm volatile ("int $0x3");
+	//asm volatile ("int $0x4");
+	init_timer(200);
 
+	// 开启中断
+	asm volatile ("sti");
 	return 0;
 }
