@@ -62,7 +62,7 @@ int kern_entry()
 #include "timer.h"
 #include "pmm.h"
 #include "vmm.h"
-
+#include "heap.h"
 // 内核初始化函数
 void kern_init();
 

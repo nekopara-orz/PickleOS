@@ -66,14 +66,14 @@ void *kmalloc(uint32_t len_byte)
 	}else
 	{
 		new_ptr = HEAP_START;
-		heap_first = (uint32_t *) new_ptr;
+		heap_first = (header_t *) new_ptr;
 	}
 
 	// printf("inkmalloc %d \n", new_ptr);
 	//判断是否有足够空间，如不够则分配
 	alloc_chunk(new_ptr,len_byte);
 	
-	ptr_now = (uint32_t *)new_ptr;
+	ptr_now = (header_t *)new_ptr;
 	ptr_now->allocated = 1;
 
 	ptr_now->length = len_byte;
