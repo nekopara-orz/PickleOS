@@ -3,15 +3,14 @@
  *
  *       Filename:  common.h
  *
- *    Description:  一些类型的定义
+ *    Description:  一些通用操作
  *
  *        Version:  1.0
- *        Created:  2013年11月01日 10时07分26秒
+ *        Created:  2020年08月23日 
  *       Revision:  none
  *       Compiler:  gcc
  *
- *         Author:  Hurley (LiuHuan), liuhuan1992@gmail.com
- *        Company:  Class 1107 of Computer Science and Technology
+
  *
  * =====================================================================================
  */
@@ -29,5 +28,12 @@ uint8_t inb(uint16_t port);
 
 // 端口读一个字
 uint16_t inw(uint16_t port);
+
+// 开启中断
+void enable_intr();
+
+// 关闭中断
+void disable_intr();
+
 
 #endif // INCLUDE_COMMON_H_
